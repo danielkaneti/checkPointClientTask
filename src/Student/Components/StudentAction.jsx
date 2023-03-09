@@ -4,7 +4,8 @@ import { Box, CircularProgress, Fab, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Check, Delete, Edit, Save } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
-import AddStudentComponent from "./AddStudentComponent";
+
+import EditStudentComponent from "./EditStudentComponent";
 // import { getUsers, updateStatus } from "../../../actions/user";
 // import { useValue } from "../../../context/ContextProvider";
 
@@ -104,10 +105,10 @@ const StudentAction = ({ params, rowId, setRowId, row }) => {
             </Fab>
           </div>
         )}
-        <AddStudentComponent
+        <EditStudentComponent
           open={open}
           setIsOpen={setIsOpen}
-          studentData={params}
+          studentData={params.row}
         />
         {loading && (
           <CircularProgress

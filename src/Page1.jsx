@@ -4,6 +4,7 @@ import { color } from "@mui/system";
 import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 import StudentAction from "./Student/Components/StudentAction";
+import AddStudentComponent from "./Student/Components/AddStudentComponent";
 
 const ButtonContaner = styled("div")(() => ({
   display: "flex",
@@ -12,6 +13,7 @@ const ButtonContaner = styled("div")(() => ({
 const Page1 = () => {
   const [rowId, setRowId] = React.useState("");
   const [rowDate, setRowDate] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const [selsectRowFlag, setSelectRowFlag] = React.useState(false);
 
   const columns = [
@@ -48,15 +50,18 @@ const Page1 = () => {
     // console.log(row);
   };
 
+  const onAddClick = (row) => {
+    setOpen(true);
+    // console.log(row);
+  };
   return (
     <div
       style={{
         height: 400,
-        position: "fixed" /* or absolute */,
-
         width: "70%",
+        margin: "auto",
         background: "white",
-        verticalAlign: "middle",
+        padding: "10px",
       }}
     >
       <DataGrid
@@ -65,10 +70,22 @@ const Page1 = () => {
         disableSelectionOnClick
         onCellClick={(rows) => onRowsSelectionHandler(rows)}
       />
-      {/* <ButtonContaner>
-        <Button disabled={selsectRowFlag}>Edit </Button>
-        <Button disabled={selsectRowFlag}>Delete Stusdent</Button>
-      </ButtonContaner> */}
+      <Button
+        type="submit"
+        variant="contained"
+        sx={{
+          mt: 3,
+          mb: 2,
+          width: "250px",
+          alignItems: "center",
+          background: "white",
+          color: "black",
+        }}
+        onClick={onAddClick}
+      >
+        ADD STUDENT
+      </Button>
+      <AddStudentComponent setIsOpen={setOpen} open={open} />
     </div>
   );
 };

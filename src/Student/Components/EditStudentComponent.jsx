@@ -19,16 +19,15 @@ const style = {
   p: 4,
 };
 
-const AddStudentComponent = ({ open, setIsOpen }) => {
-  const [id, setID] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [departemnt, setDepartemnt] = useState("");
-  const [gpa, setGpa] = useState("");
+const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
+  const [firstName, setFirstName] = useState(studentData.firstName);
+  const [lastName, setLastName] = useState(studentData.lastName);
+  const [email, setEmail] = useState(studentData.email);
+  const [departemnt, setDepartemnt] = useState(studentData.departemnt);
+  const [gpa, setGpa] = useState(studentData.gpa);
 
   const handleClose = () => setIsOpen(false);
-  const onAddClick = () => setIsOpen(false);
+  const onSaveClick = () => setIsOpen(false);
   const onCloseClick = () => setIsOpen(false);
 
   return (
@@ -44,16 +43,6 @@ const AddStudentComponent = ({ open, setIsOpen }) => {
             Edit Student
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                id="id"
-                label="ID"
-                variant="outlined"
-                value={id}
-                autoFocus
-                onChange={(event) => setID(event.target.value)}
-              />
-            </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 id="firstName"
@@ -122,10 +111,12 @@ const AddStudentComponent = ({ open, setIsOpen }) => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={onAddClick}
+                onClick={onSaveClick}
               >
-                ADD
+                SAVE
               </Button>
+              {/* <Button onClick={onSaveClick}>SAVE</Button>
+          <Button onClick={onCloseClick}>CLOSE</Button> */}
             </Grid>
           </Grid>
         </Box>
@@ -134,4 +125,4 @@ const AddStudentComponent = ({ open, setIsOpen }) => {
   );
 };
 
-export default AddStudentComponent;
+export default EditStudentComponent;
