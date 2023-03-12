@@ -45,7 +45,7 @@
 
  export const updateStudent= async(id,user)=>{
     try {
-        const response = await axios.put(`http://localhost:8080/user${id}`,user);
+        const response = await axios.put(`http://localhost:8080/user/${id}`,user);
         
     } catch (error) {
         console.error(error)
