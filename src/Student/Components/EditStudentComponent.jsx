@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import { updateStudent } from "../Logic/handleListStudent";
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,15 +20,22 @@ const style = {
   p: 4,
 };
 
-const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
-  const [firstName, setFirstName] = useState(studentData.firstName);
-  const [lastName, setLastName] = useState(studentData.lastName);
-  const [email, setEmail] = useState(studentData.email);
-  const [departemnt, setDepartemnt] = useState(studentData.departemnt);
-  const [gpa, setGpa] = useState(studentData.gpa);
+const EditStudentComponent = ({ open, setIsOpen, studentData = {} ,setRenderList}) => {
 
+
+  const [user,setUser]=useState({firstName:studentData.firstName,lastName:studentData.lastName,email:studentData.email,department:studentData.department,gpa:studentData.gpa});
+
+  const {firstName,lastName,email,department,gpa} =user;
+ const  onInputChange=(e)=>{
+    setUser({...user,[e.target.name]:e.target.value});
+
+  }
   const handleClose = () => setIsOpen(false);
-  const onSaveClick = () => setIsOpen(false);
+  const onSaveClick = async () => {
+    await updateStudent(studentData.id,user);
+    setIsOpen(false)
+    setRenderList(true)
+  };
   const onCloseClick = () => setIsOpen(false);
 
   return (
@@ -49,8 +57,10 @@ const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
                 label="First Name"
                 variant="outlined"
                 value={firstName}
+                
+                name="firstName"
                 autoFocus
-                onChange={(event) => setFirstName(event.target.value)}
+                onChange={(event) => onInputChange(event)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -59,8 +69,9 @@ const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
                 label="Last Name"
                 variant="outlined"
                 value={lastName}
+                name="lastName"
                 autoFocus
-                onChange={(event) => setLastName(event.target.value)}
+                onChange={(event) => onInputChange(event)}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
@@ -69,18 +80,20 @@ const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
                 label="Email"
                 variant="outlined"
                 value={email}
+                name="email"
                 autoFocus
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(event) => onInputChange(event)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                id="departemnt"
-                label="Departemnt"
+                id="department"
+                label="Department"
                 variant="outlined"
-                value={departemnt}
+                value={department}
+                name="department"
                 autoFocus
-                onChange={(event) => setDepartemnt(event.target.value)}
+                onChange={(event) => onInputChange(event)}
               />{" "}
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -89,8 +102,9 @@ const EditStudentComponent = ({ open, setIsOpen, studentData = {} }) => {
                 label="Gpa"
                 variant="outlined"
                 value={gpa}
+                name="gpa"
                 autoFocus
-                onChange={(event) => setGpa(event.target.value)}
+                onChange={(event) => onInputChange(event)}
               />{" "}
             </Grid>
 

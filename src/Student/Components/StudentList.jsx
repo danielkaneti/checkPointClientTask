@@ -1,23 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import Box from "@mui/material/Box";
-import Page1 from "../../Page1";
+import StudentDataGrid from "./StudentDataGrid";
 import { Card } from "@mui/material";
+import ExcellentStudentdataGrid from "./ExcellentStudentdataGrid";
+import { styled } from "@mui/material/styles";
+
+const Contaner = styled("div")(() => ({
+paddingBottom :'100px'}));
 const StudentList = () => {
+
+  const [render,setRender]=useState(false);
   return (
+    <div>
     <Box
       sx={{
         width: "70%",
-        height: 690,
+        higth:'50px',
+
         margin: "auto",
         backgroundColor: "primary.dark",
-        "&:hover": {
-          backgroundColor: "primary.main",
-          opacity: [0.9, 0.8, 0.7],
-        },
+        
       }}
     >
-      <Page1 />
+<Contaner>
+      <StudentDataGrid  setRender={setRender}/>
+      </Contaner>
     </Box>
+    <Box
+      sx={{
+        width: "70%",
+        higth:'50px',
+        margin: "auto",
+        backgroundColor: "primary.dark",
+        
+      }}
+    >
+<Contaner>
+      <ExcellentStudentdataGrid render={render}/>
+      </Contaner>
+    </Box>
+    </div>
   );
 };
 

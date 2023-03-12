@@ -12,11 +12,11 @@ export default function ButtonAppBar() {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit" component={Link} to="/page1">
-            Page 1
+          <Button color="inherit" component={Link} to="/students">
+          Students
           </Button>
-          <Button color="inherit" component={Link} to="/page2">
-            Page 2
+          <Button color="inherit" component={Link} to="/honor">
+            Honor-candidates
           </Button>
         </Toolbar>
       </AppBar>

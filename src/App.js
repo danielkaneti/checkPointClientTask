@@ -2,8 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ButtonAppBar from './Component/AppBar';
-import Page1 from './Page1';
-import Page2 from './Page2';
+import HonorList from './honor/Component/HonorListComponet';
 import StudentList from './Student/Components/StudentList';
 
 function App() {
@@ -12,9 +11,11 @@ function App() {
       <div>
         <ButtonAppBar />
         <Routes>
-          <Route element={<StudentList/>}  path="/page1">
+        <Route element={<StudentList/>}  path="/">
           </Route>
-          <Route  element={<Page2/>} path="/page2">
+          <Route element={<StudentList/>}  path="/students">
+          </Route>
+          <Route  element={<HonorList/>} path="/honor">
           </Route>
         </Routes>
       </div>
